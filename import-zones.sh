@@ -803,6 +803,6 @@ done
 /sbin/ipset flush firehol
 
 # FireHOL ‘level 1’ blacklist
-for ZONE in $(wget --quiet -O - https://raw.githubusercontent.com/ktsaou/blocklist-/sbin/ipsets/master/firehol_level1.netset | sed '/#/d')
+for ZONE in $(wget --quiet -O - https://raw.githubusercontent.com/ktsaou/blocklist-ipsets/master/firehol_level1.netset | sed '/#/d')
 do /sbin/ipset --add firehol "$ZONE"
 done
