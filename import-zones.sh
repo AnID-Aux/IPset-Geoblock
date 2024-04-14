@@ -836,6 +836,13 @@ do /sbin/ipset --add firehol_ssh "$ZONE"
 done
 
 # Flush existing FireHOL rules
+/sbin/ipset flush firehol_mail
+
+for ZONE in $(wget --quiet -O - https://iplists.firehol.org/files/blocklist_de_mail.ipset | sed '/#/d')
+do /sbin/ipset --add firehol_mail "$ZONE"
+done
+
+# Flush existing FireHOL rules
 /sbin/ipset flush firehol_imap
 
 for ZONE in $(wget --quiet -O - https://iplists.firehol.org/files/blocklist_de_imap.ipset | sed '/#/d')
