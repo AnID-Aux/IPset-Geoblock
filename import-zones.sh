@@ -803,6 +803,56 @@ done
 /sbin/ipset flush firehol
 
 # FireHOL ‘level 1’ blacklist
-for ZONE in $(wget --quiet -O - https://raw.githubusercontent.com/ktsaou/blocklist-ipsets/master/firehol_level1.netset | sed '/#/d')
+for ZONE in $(wget --quiet -O - https://iplists.firehol.org/files/firehol_level1.netset | sed '/#/d')
 do /sbin/ipset --add firehol "$ZONE"
 done
+
+# Flush existing FireHOL rules
+/sbin/ipset flush firehol_webserver
+
+for ZONE in $(wget --quiet -O - https://iplists.firehol.org/files/firehol_webserver.netset | sed '/#/d')
+do /sbin/ipset --add firehol_webserver "$ZONE"
+done
+
+# Flush existing FireHOL rules
+/sbin/ipset flush firehol_openproxys
+
+for ZONE in $(wget --quiet -O - https://iplists.firehol.org/files/firehol_proxies.netset | sed '/#/d')
+do /sbin/ipset --add firehol_openproxys "$ZONE"
+done
+
+# Flush existing FireHOL rules
+/sbin/ipset flush firehol_tor_exits
+
+for ZONE in $(wget --quiet -O - https://iplists.firehol.org/files/tor_exits_7d.ipset | sed '/#/d')
+do /sbin/ipset --add firehol_tor_exits "$ZONE"
+done
+
+# Flush existing FireHOL rules
+/sbin/ipset flush firehol_ssh
+
+for ZONE in $(wget --quiet -O - https://iplists.firehol.org/files/blocklist_de_ssh.ipset | sed '/#/d')
+do /sbin/ipset --add firehol_ssh "$ZONE"
+done
+
+# Flush existing FireHOL rules
+/sbin/ipset flush firehol_imap
+
+for ZONE in $(wget --quiet -O - https://iplists.firehol.org/files/blocklist_de_imap.ipset | sed '/#/d')
+do /sbin/ipset --add firehol_imap "$ZONE"
+done
+
+# Flush existing FireHOL rules
+/sbin/ipset flush firehol_bruteforce
+
+for ZONE in $(wget --quiet -O - https://iplists.firehol.org/files/blocklist_de_bruteforce.ipset | sed '/#/d')
+do /sbin/ipset --add firehol_bruteforce "$ZONE"
+done
+
+# Flush existing FireHOL rules
+/sbin/ipset flush firehol_strongips
+
+for ZONE in $(wget --quiet -O - https://iplists.firehol.org/files/blocklist_de_strongips.ipset | sed '/#/d')
+do /sbin/ipset --add firehol_strongips "$ZONE"
+done
+
